@@ -3,7 +3,7 @@ CANCELED: An implementation of basic cli commands using sqlite and python
 
 NEW PROJECT: Hogwarts Wizard Duels
 
-Here's a list of spells with descriptions that need to be placed into a table called 'Spells':  return
+Here's a list of spells with descriptions that need to be placed into a table called 'Spells':<br>
 (This list is provided by ChatGPT)
 Accio	              Summoning charm used to bring an object to the caster
 Aguamenti     	    Creates a stream of water from the wand
