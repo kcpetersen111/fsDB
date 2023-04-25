@@ -49,3 +49,12 @@ Tarantallegra	      Forces the target to dance uncontrollably<br>
 Wingardium Leviosa	Levitates objects, allowing them to be moved through the air<br>
 
 *Note: We need to also add a damage power to the end of each of these spells in another column of the table*<br>
+
+Other rules to be added for dueling:<br>
+1.  Year will *increase* the spell's power as follows:<br>
+  - year 1 -> x 1.10<br>
+  - year 2 -> x 1.25<br>
+  - year 3 -> x 1.50<br>
+  - year 4 -> x 2.00<br>
+2.  However, if wizard 1 in the duel is the house weakness of wizard 2's house, then both wizard's lose any year bonuses...but wizard 1 gets a 1.75 spell power boost.<br>
+3.  Use of a random number generator will select the id of a spell that the user will cast for that round. Each duel will be best of three rounds unless two spells are     cast: aparate or avada Kedavra<br>
