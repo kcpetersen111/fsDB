@@ -61,4 +61,9 @@ Other rules to be added for dueling:<br>
   - The wizard that casts aparate **LOSES** for running away.<br>
   - The wizard that casts Avada Kedavra **WINS**, but only if they used it *ONCE*.  More than once gets sent to Azkaban.<br>
 
-
+TABLES to build:
+1. Wizards
+2. Spells
+3. Houses
+4. Azkaban
+5. Results
