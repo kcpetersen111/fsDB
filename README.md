@@ -48,4 +48,4 @@ Sonorus	            Amplifies the caster's voice<br>
 Tarantallegra	      Forces the target to dance uncontrollably<br>
 Wingardium Leviosa	Levitates objects, allowing them to be moved through the air<br>
 
-*Note: We need to also add a damage power to the end of each of these spells in another column of the table*<br><br>
+*Note: We need to also add a damage power to the end of each of these spells in another column of the table*<br>
