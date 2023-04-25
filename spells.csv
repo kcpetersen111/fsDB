@@ -6,7 +6,7 @@ id,spell,description,spell_power
 5,Confundus,Causes confusion in the target,30
 6,Crucio,Unforgivable curse that causes intense pain to the target,90
 7,Expelliarmus,Disarming charm used to disarm an opponent,40
-8,Expecto Patronum,Creates a Patronus, a protective magical charm against Dementors,80
+8,Expecto Patronum,Creates a Patronus a protective magical charm against Dementors,80
 9,Imperio,Unforgivable curse that allows the caster to control the actions of the target,80
 10,Incendio,Starts a fire,50
 11,Levicorpus,Levitates the target by the ankles,60
@@ -18,26 +18,26 @@ id,spell,description,spell_power
 17,Apparate,Teleportation spell that allows the caster to instantly transport themselves to a different location,70
 18,Bat-Bogey Hex,Causes the target's bogies to grow wings and attack them,30
 19,Bombarda,Creates a small explosion,40
-20,Colloportus,Seals a door or other object, making it impossible to open,30
+20,Colloportus,Seals a door or other object making it impossible to open,30
 21,Confringo,Causes the target to burst into flames,80
-22,Diffindo,Cuts or slashes objects, such as clothing or curtains,40
+22,Diffindo,Cuts or slashes objects such as clothing or curtains,40
 23,Episkey,Minor healing spell used to heal minor injuries,30
 24,Evanesco,Vanishing spell used to make an object disappear,40
 25,Ferula,Conjures up a bandage and splint for a broken limb,30
 26,Finite Incantatem,Ends the effects of spells and charms,50
-27,Fidelius,Hides a secret within the soul of a chosen person, making it impossible for others to discover it,100
+27,Fidelius,Hides a secret within the soul of a chosen person making it impossible for others to discover it,100
 28,Glisseo,Causes stairs to flatten into a slide,30
 29,Impervius,Waterproofing spell,50
 30,Invisibility Charm,Renders the caster invisible,70
 31,Langlock,Glues the target's tongue to the roof of their mouth,30
 32,Lumos,Creates a small light at the end of the wand,20
-33,Muffliato,Causes a buzzing noise in the ears of those nearby, making it difficult for them to hear conversations,30
+33,Muffliato,Causes a buzzing noise in the ears of those nearby making it difficult for them to hear conversations,30
 34,Petrificus Totalus,Full-body bind that immobilizes the target,60
 35,Prior Incantato,Reveals the last spell cast by a wand,50
 36,Protean Charm,Allows a group of objects to assume the same form or pattern as a single "master" object,50
 37,Reparo,Fixes broken objects,40
 38,Riddikulus,Causes the target's greatest fear to become comically absurd,50
-39,Silencio,Silences the target, making them unable to speak,40
+39,Silencio,Silences the target making them unable to speak,40
 40,Sonorus,Amplifies the caster's voice,30
 41,Tarantallegra,Forces the target to dance uncontrollably,30
 42,Wingardium Leviosa,Levitates objects allowing them to be moved through the air,20
