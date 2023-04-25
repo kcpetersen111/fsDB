@@ -39,3 +39,5 @@ id,spell,description,spell_power
 38,Riddikulus,Causes the target's greatest fear to become comically absurd,50
 39,Silencio,Silences the target, making them unable to speak,40
 40,Sonorus,Amplifies the caster's voice,30
+41,Tarantallegra,Forces the target to dance uncontrollably,30
+42,Wingardium Leviosa,Levitates objects allowing them to be moved through the air,20
