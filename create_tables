@@ -30,6 +30,13 @@ c.execute("""CREATE TABLE spells (
   )
   """
 )
+          
+c.execute("""CREATE TABLE mastery (
+  w_id INTEGER PRIMARY KEY,
+  spell TEXT PRIMARY KEY
+)
+"""
+)
 
 c.execute("""CREATE TABLE results (
   name TEXT PRIMARY KEY, 
