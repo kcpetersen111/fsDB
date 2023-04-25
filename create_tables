@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sqlite
+import sqlite3
 
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
@@ -32,8 +32,9 @@ c.execute("""CREATE TABLE spells (
 )
           
 c.execute("""CREATE TABLE mastery (
-  wizard_id INTEGER PRIMARY KEY,
-  spell_id INTEGER PRIMARY KEY
+  wizard_id INTEGER,
+  spell_id INTEGER,
+  PRIMARY KEY(wizard_id, spell_id)
 )
 """
 )
