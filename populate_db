@@ -34,3 +34,5 @@ python3 insert houses Gryffindor Ravenclaw Hufflepuff
 python3 insert houses Slytherin Gryffindor Ravenclaw
 python3 insert houses Hufflepuff Slytherin Gryffindor
 python3 insert houses Ravenclaw Hufflepuff Slytherin
+
+python3 insertSpellsFromCSV.py spells.csv
