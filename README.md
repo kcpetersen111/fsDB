@@ -58,7 +58,7 @@ Other rules to be added for dueling:<br>
   - year 4 -> x 2.00<br>
 2.  However, if wizard 1 in the duel is the house weakness of wizard 2's house, then both wizard's lose any year bonuses...but wizard 1 gets a 1.75 spell power boost.<br>
 3.  Use of a random number generator will select the id of a spell that the user will cast for that round. Each duel will be best of three rounds unless two spells are     cast: aparate or avada Kedavra<br>
-  - The wizard that casts aparate **loses** for running away.<br>
-  - The wizard that casts Avada Kedavra **wins**, but only if they used it once.  More than once gets sent to Azkaban.<br>
+  - The wizard that casts aparate **LOSES** for running away.<br>
+  - The wizard that casts Avada Kedavra **WINS**, but only if they used it *ONCE*.  More than once gets sent to Azkaban.<br>
 
 
