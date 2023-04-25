@@ -1,0 +1,32 @@
+#!/usr/bin/env python3
+
+import sqlite
+
+conn = sqlite3.connect('wizard_duels.db')
+c = conn.cursor()
+
+c.execute("""CREATE TABLE wizards (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL, 
+  year INTEGER,
+  house TEXT NOT NULL
+  )
+  """
+)
+
+c.execute("""CREATE TABLE houses (
+  house TEXT PRIMARY KEY, 
+  weakness TEXT NOT NULL,
+  draw TEXT NOT NULL
+  )
+  """
+)
+
+c.execute("""CREATE TABLE spells (
+  id INTEGER PRIMARY KEY,
+  spell TEXT NOT NULL,
+  description TEXT NOT NULL, 
+  power INTEGER
+  )
+  """
+)
