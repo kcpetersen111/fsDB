@@ -30,3 +30,20 @@ c.execute("""CREATE TABLE spells (
   )
   """
 )
+
+c.execute("""CREATE TABLE results (
+  name TEXT PRIMARY KEY, 
+  wins INTEGER, 
+  losses INTEGER
+  )
+  """
+)
+
+c.execute("""CREATE TABLE azkaban (
+  name TEXT PRIMARY KEY, 
+  victim1 TEXT NOT NULL, 
+  victim2 TEXT NOT NULL,
+  state TEXT NOT NULL
+  )
+  """
+)
