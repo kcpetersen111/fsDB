@@ -25,70 +25,82 @@ def runTrain(house, c):
     
     c.execute("DELETE FROM results;")
     
-    # add everyone to res table
-    # get one person who has not died 
-    # get another one 
-    # get a spell for each person 
-    # set one to dead
-    
-    # ag query to take max  and then have people how have a max of 0 losses fight
     c.execute("INSERT INTO results SELECT w.id,w.name,0,0 FROM wizards AS w WHERE w.house = ?;",[house])
-    c.execute("""
+    for i in range(c.execute("SELECT COUNT(1) FROM results").fetchone()[0]-1):
+        c.executescript("""
 
-        CREATE table wizardBattle as
-            SELECT r.name, spells.power
-            FROM results AS r
-            JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = r.id
-            JOIN spells ON spells.id = w.spell_id
-            WHERE r.losses == 0
-            LIMIT 2;
-    
-        CREATE VIEW twoPeopleBat AS
-            SELECT name, max(power)
-                FROM wizardBattle;
+            CREATE table wizardBattle as
+                SELECT r.name, spells.power
+                FROM results AS r
+                JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = r.id
+                JOIN spells ON spells.id = w.spell_id
+                WHERE r.losses == 0
+                LIMIT 2;
         
-
-        UPDATE results AS r1
-            set wins = CASE
-                        WHEN r1.name in (SELECT name FROM twoPeopleBat)
-                            THEN (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)+1
-                            ELSE (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)
-                        END,
-                losses = CASE
-                        WHEN r1.name NOT in (SELECT name FROM twoPeopleBat) AND r1.name in (SELECT name FROM wizardBattle)
-                            THEN (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)+1
-                            ELSE (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)
-                        END;
-        DROP VIEW twoPeopleBat;  
-        DROP TABLE wizardBattle;
-    """)
-    # get the people from  all of the people from a house
-    # make table 
-    # get a user have them fight someone in there house 
-    # keep going until one wins 
-    c.execute("""
-        WITH train(wizard, wins, losses) AS (
-            SELECT wizard.wizard_id, 0, 0 
-            FROM wizards 
-            WHERE wizards.house == ? LIMIT 1
+            CREATE VIEW twoPeopleBat AS
+                SELECT name, max(power)
+                    FROM wizardBattle;
             
-            Union
-            
-            SELECT x 
-            FROM (
-                SELECT wizard.wizard_id, 0, 0 
-                FROM wizards 
-                WHERE wizards.house == ? 
-                    AND wizards.wizard_id NOT IN (
-                        SELECT train.wizard FROM train
-                    )
-                )
-            WHERE 
-            LIMIT 1
-            )
-        ) 
 
-    """)
+            UPDATE results AS r1
+                set wins = CASE
+                            WHEN r1.name in (SELECT name FROM twoPeopleBat)
+                                THEN (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)+1
+                                ELSE (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)
+                            END,
+                    losses = CASE
+                            WHEN r1.name NOT in (SELECT name FROM twoPeopleBat) AND r1.name in (SELECT name FROM wizardBattle)
+                                THEN (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)+1
+                                ELSE (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)
+                            END;
+            DROP VIEW twoPeopleBat;  
+            DROP TABLE wizardBattle;
+            SELECT * FROM results;
+        """)
+    for x in c.execute("SELECt * from results ORDER BY wins DESC;").fetchall():
+        print(x)
+   
+   
+def freeForAll(c):
+    c.execute("DELETE FROM results;")
+    
+    
+    c.execute("INSERT INTO results SELECT w.id,w.name,0,0 FROM wizards AS w;")
+    for i in range(c.execute("SELECT COUNT(1) FROM results").fetchone()[0]-1):
+        c.executescript("""
+
+            CREATE table wizardBattle as
+                SELECT r.name, spells.power
+                FROM results AS r
+                JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = r.id
+                JOIN spells ON spells.id = w.spell_id
+                WHERE r.losses == 0
+                LIMIT 2;
+        
+            CREATE VIEW twoPeopleBat AS
+                SELECT name, max(power)
+                    FROM wizardBattle;
+            
+
+            UPDATE results AS r1
+                set wins = CASE
+                            WHEN r1.name in (SELECT name FROM twoPeopleBat)
+                                THEN (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)+1
+                                ELSE (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)
+                            END,
+                    losses = CASE
+                            WHEN r1.name NOT in (SELECT name FROM twoPeopleBat) AND r1.name in (SELECT name FROM wizardBattle)
+                                THEN (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)+1
+                                ELSE (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)
+                            END;
+            DROP VIEW twoPeopleBat;  
+            DROP TABLE wizardBattle;
+            SELECT * FROM results;
+        """)
+    for x in c.execute("SELECt * from results ORDER BY wins DESC;").fetchall():
+        print(x)
+  
+   
     
 def getYears(year, c):
     c.execute("SELECT * FROM wizards WHERE year = (?)", [year])
@@ -201,6 +213,10 @@ elif sys.argv[1] == "masters":
     getMasters(sys.argv[2], c)
 elif sys.argv[1] == "foodchain":
     buildChain(c)
+elif sys.argv[1] == "free":
+    freeForAll(c)
+elif sys.argv[1] == "review":
+    buildReview(c)
 elif sys.argv[1] == "compare":
     compareWizards(sys.argv[2], sys.argv[3], c)
 elif sys.argv[1] == "1v1":
