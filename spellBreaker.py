@@ -20,45 +20,35 @@ def runTrain(house, c):
     # set one to dead
     
     # ag query to take max  and then have people how have a max of 0 losses fight
-    c.execute("INSERT INTO results SELECT w.name,0,0 FROM wizards AS w WHERE w.house = ?;",[house])
+    c.execute("INSERT INTO results SELECT w.id,w.name,0,0 FROM wizards AS w WHERE w.house = ?;",[house])
     c.execute("""
-        WITH duelest (name) AS (
-            SELECT r.name 
-            FROM results AS r
-            WHERE MAX(r.losses) == 0
-            LIMIT 2
-        )
-        # CREATE VIEW randomCast AS
-        # cast a spell
-        SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id;
-        
-        # get all of the people with zero losses
-        SELECT r.name 
-            FROM results AS r
-            LIMIT 2;
-            
-        
-     SELECT *
+
+        CREATE table wizardBattle as
+            SELECT r.name, spells.power
             FROM results AS r
             JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = r.id
             JOIN spells ON spells.id = w.spell_id
             WHERE r.losses == 0
             LIMIT 2;
-            
-    # base case
     
-     SELECT wizards.name, wizards.id, 0, 0
-            FROM wizards
-            WHERE 1= 1 LIMIT 1;
+        CREATE VIEW twoPeopleBat AS
+            SELECT name, max(power)
+                FROM wizardBattle;
         
-    # recursive 
-    with wizardBattle(name, id, win, loss, battleNumber) AS (
-        SELECT wizard.wizard_id, 0, 0 
-            FROM wizards 
-            WHERE wizards.house == ? LIMIT 1
-            
-    )
-        
+
+        UPDATE results AS r1
+            set wins = CASE
+                        WHEN r1.name in (SELECT name FROM twoPeopleBat)
+                            THEN (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)+1
+                            ELSE (SELECT r2.wins FROM results AS r2 WHERE r1.id = r2.id)
+                        END,
+                losses = CASE
+                        WHEN r1.name NOT in (SELECT name FROM twoPeopleBat) AND r1.name in (SELECT name FROM wizardBattle)
+                            THEN (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)+1
+                            ELSE (SELECT r2.losses FROM results AS r2 WHERE r1.id = r2.id)
+                        END;
+        DROP VIEW twoPeopleBat;  
+        DROP TABLE wizardBattle;
     """)
     # get the people from  all of the people from a house
     # make table 
