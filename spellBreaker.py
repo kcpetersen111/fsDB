@@ -59,7 +59,7 @@ def getSpells(wizard, c):
 
 
 def getMasters(spell ,c):
-    for spell in c.execute('''
+    for master in c.execute('''
         SELECT 
             wizards.name
         FROM 
@@ -70,7 +70,21 @@ def getMasters(spell ,c):
         WHERE
             spells.spell = ?
     ''', [spell]).fetchall():
-        print(spell[0])
+        print(master[0])
+
+def buildChain(c):
+    for wizard in c.execute('''
+        SELECT 
+            wizards.name, SUM(spells.power) AS power
+        FROM 
+            wizards JOIN mastery ON 
+                wizards.id = wizard_id
+            JOIN spells ON
+                spells.id = spell_id
+        GROUP BY wizards.name
+        ORDER BY power DESC
+    ''').fetchall():
+        print(f'{wizard[0]:20} : {wizard[1]:5}')
 
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
@@ -92,6 +106,8 @@ elif sys.argv[1] == "train":
     print(runTrain(sys.argv[2], c))
 elif sys.argv[1] == "masters":
     getMasters(sys.argv[2], c)
+elif sys.argv[1] == "foodchain":
+    buildChain(c)
 else:
     print("I dont know what you mean")
 conn.commit()
