@@ -40,7 +40,7 @@ c.execute("""CREATE TABLE mastery (
 )
 
 c.execute("""CREATE TABLE results (
-  id INTEGER PRIMARY KEY
+  id INTEGER PRIMARY KEY,
   name TEXT NOT NULL, 
   wins INTEGER, 
   losses INTEGER
