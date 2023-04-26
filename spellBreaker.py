@@ -3,8 +3,20 @@ import sqlite3
 
 
 def runTournament(c):
-    #c.execute("SELECT id, name FROM wizards")
-    pass
+    c.execute("DELETE FROM results")
+    c.execute("SELECT id, name FROM wizards ORDER BY RANDOM() LIMIT 16")
+    w_list = c.fetchall()
+    # i = 0
+    # for i in range(len(w_list)):
+    #     print(w_list[i])
+    for i in range(len(w_list)):
+        c.execute("INSERT INTO results VALUES (?,?,?,?)", (w_list[i][0], w_list[i][1], 0, 0))
+    c.execute("SELECT * FROM results")
+    w_results = c.fetchall()
+    # i = 0
+    # for i in range(len(w_results)):
+    #     print(w_results[i])
+
 
 def runDuels(house, c):
     pass
@@ -157,21 +169,22 @@ def buildChain(c):
     ''').fetchall():
         print(f'{wizard[0]:20} : {wizard[1]:5}')
 
-def buildReview(c):
-    for wizard in c.execute('''
-        SELECT 
-            wizards.name, wins, losses, SUM(spells.power) AS power, wins-losses AS rank
-        FROM 
-            wizards JOIN mastery ON 
-                wizards.id = wizard_id
-            JOIN spells ON
-                spells.id = spell_id
-            JOIN results ON
-                results.id = wizards.id
+def compareWizards(wiz1, wiz2, c):
+    c.execute('''
+        SELECT wizards.name, SUM(spells.power)/5 AS power
+        FROM wizards
+        JOIN mastery
+        ON wizards.id = wizard_id
+        JOIN spells 
+        ON spells.id = spell_id
+        WHERE wizards.name == (?) OR wizards.name == (?)
         GROUP BY wizards.name
-        ORDER BY rank DESC
-    ''').fetchall():
-        print(f'{wizard[0]:20} : {wizard[1]:5} : {wizard[2]:5} : {wizard[3]:5}')
+        ORDER BY power DESC
+    ''', (wiz1, wiz2))
+    w_comp = c.fetchall()
+    print(f"{w_comp[0][0]}'s average power: {w_comp[0][1]}")
+    print(f"{w_comp[1][0]}'s average power: {w_comp[1][1]}")
+    print(f"{w_comp[0][0]} wins")
 
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
@@ -199,6 +212,8 @@ elif sys.argv[1] == "free":
     freeForAll(c)
 elif sys.argv[1] == "review":
     buildReview(c)
+elif sys.argv[1] == "compare":
+    compareWizards(sys.argv[2], sys.argv[3], c)
 else:
     print("I dont know what you mean")
 conn.commit()
