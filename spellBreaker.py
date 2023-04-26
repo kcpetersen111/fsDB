@@ -21,21 +21,32 @@ def runTrain(house, c):
     """)
     
 
-def getYears(year):
-    conn = sqlite3.connect('wizard_duels.db')
-    c = conn.cursor()
+def getYears(year, c):
     c.execute("SELECT * FROM wizards WHERE year = (?)", [year])
+    w_names = c.fetchall()
+    i = 0
+    for i in range(len(w_names)):
+        print(w_names[i][1])
 
-def getHouse(house):
-    pass
+def getHouse(house, c):
+    c.execute("SELECT * FROM wizards WHERE house = (?)", [house])
+    w_names = c.fetchall()
+    i = 0
+    for i in range(len(w_names)):
+        print(w_names[i][1])
 
 def getWeakness(house):
-    pass
+    c.execute("SELECT * FROM houses WHERE house = (?)", [house])
+    h_name = c.fetchall()
+    print(h_name[0][1])
 
 def getStalemate(house):
     pass
 
 def getSpells(wizard):
+    pass
+
+def getMasters(spell ,c):
     pass
 
 conn = sqlite3.connect('wizard_duels.db')
@@ -45,15 +56,19 @@ if sys.argv[1] == "tournament":
 elif sys.argv[1] == "duels":
     print(runDuels(sys.argv[2]))
 elif sys.argv[1] == "year":
-    print(getYears(sys.argv[2]))
+    getYears(sys.argv[2], c)
+elif sys.argv[1] == "house":
+    getHouse(sys.argv[2], c)
 elif sys.argv[1] == "weakness":
-    print(getWeakness(sys.argv[2]))
+    getWeakness(sys.argv[2])
 elif sys.argv[1] == "stalemate":
     print(getStalemate(sys.argv[2]))
 elif sys.argv[1] == "spells":
     print(getSpells(sys.argv[2]))
 elif sys.argv[1] == "train":
     print(runTrain(sys.argv[2], c))
+elif sys.argv[1] == "masters":
+    print(getMasters(sys.argv[2], c))
 else:
     print("I dont know what you mean")
 conn.commit()
