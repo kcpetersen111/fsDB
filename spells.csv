@@ -25,7 +25,7 @@ id,spell,description,power
 24,Evanesco,Vanishing spell used to make an object disappear,30
 25,Ferula,Conjures up a bandage and splint for a broken limb,30
 26,Finite_Incantatem,Ends the effects of spells and charms,50
-27,Fidelius,Hides a secret within the soul of a chosen person making it impossible for others to discover it,100
+27,Fidelius,Hides a secret within the soul of a chosen person making it impossible for others to discover it,50
 28,Glisseo,Causes stairs to flatten into a slide,30
 29,Impervius,Waterproofing spell,50
 30,Invisibility_Charm,Renders the caster invisible,70
