@@ -2,10 +2,10 @@ import sys
 import sqlite3
 
 
-def runTournament():
+def runTournament(c):
     pass
 
-def runDuels(house):
+def runDuels(house, c):
     pass
 
 def runTrain(house, c):
@@ -41,7 +41,9 @@ def getWeakness(house):
     print(h_name[0][1])
 
 def getStalemate(house):
-    pass
+    c.execute("SELECT * FROM houses WHERE house = (?)", [house])
+    h_name = c.fetchall()
+    print(h_name[0][2])
 
 def getSpells(wizard, c):
     for spell in c.execute('''
@@ -89,9 +91,9 @@ def buildChain(c):
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
 if sys.argv[1] == "tournament":
-    print(runTournament())
+    runTournament(c)
 elif sys.argv[1] == "duels":
-    print(runDuels(sys.argv[2]))
+    print(runDuels(sys.argv[2]), c)
 elif sys.argv[1] == "year":
     getYears(sys.argv[2], c)
 elif sys.argv[1] == "house":
@@ -99,7 +101,7 @@ elif sys.argv[1] == "house":
 elif sys.argv[1] == "weakness":
     getWeakness(sys.argv[2])
 elif sys.argv[1] == "stalemate":
-    print(getStalemate(sys.argv[2]))
+    getStalemate(sys.argv[2])
 elif sys.argv[1] == "spells":
     getSpells(sys.argv[2], c)
 elif sys.argv[1] == "train":
