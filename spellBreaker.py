@@ -188,8 +188,21 @@ def compareWizards(wiz1, wiz2, c):
 
 def runSolos(wiz1, wiz2, c):
     c.execute('''
-    
-    ''')
+        SELECT wizards.name, spells.spell, spells.power
+        FROM wizards
+        JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = wizards.id
+        /*JOIN mastery
+        ON wizards.id = wizard_id*/
+        JOIN spells
+        ON spells.id = spell_id 
+        WHERE wizards.name == (?) OR wizards.name == (?)
+        ORDER BY power DESC
+    ''', (wiz1, wiz2))
+    w_duel = c.fetchall()
+    print(f"{w_duel[0][0]} used {w_duel[0][1]} with a power of {w_duel[0][2]}")
+    print(f"{w_duel[1][0]} used {w_duel[1][1]} with a power of {w_duel[1][2]}")
+    print(f"{w_duel[0][0]} wins!")
+
 
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
