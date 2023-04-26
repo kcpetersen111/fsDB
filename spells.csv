@@ -1,4 +1,4 @@
-id,spell,description,spell_power
+id,spell,description,power
 1,Accio,Summoning charm used to bring an object to the caster,40
 2,Aguamenti,Creates a stream of water from the wand,20
 3,Alohomora,Opens and unlocks doors and windows,30
