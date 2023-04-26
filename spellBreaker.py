@@ -43,8 +43,20 @@ def getWeakness(house):
 def getStalemate(house):
     pass
 
-def getSpells(wizard):
-    pass
+def getSpells(wizard, c):
+    for spell in c.execute('''
+        SELECT 
+            spells.spell
+        FROM 
+            wizards JOIN mastery ON 
+                wizards.id = wizard_id
+            JOIN spells ON
+                spells.id = spell_id
+        WHERE
+            name = ?
+    ''', [wizard]).fetchall():
+        print(spell[0])
+
 
 def getMasters(spell ,c):
     pass
@@ -64,7 +76,7 @@ elif sys.argv[1] == "weakness":
 elif sys.argv[1] == "stalemate":
     print(getStalemate(sys.argv[2]))
 elif sys.argv[1] == "spells":
-    print(getSpells(sys.argv[2]))
+    getSpells(sys.argv[2], c)
 elif sys.argv[1] == "train":
     print(runTrain(sys.argv[2], c))
 elif sys.argv[1] == "masters":
