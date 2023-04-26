@@ -3,7 +3,8 @@ import sqlite3
 
 
 def runTournament(c):
-    #c.execute(SELECT )
+    #c.execute("SELECT id, name FROM wizards")
+    pass
 
 def runDuels(house, c):
     pass
