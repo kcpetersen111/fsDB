@@ -11,17 +11,83 @@ def runDuels(house, c):
 
 def runTrain(house, c):
     
+    c.execute("DELETE FROM results;")
+    
+    # add everyone to res table
+    # get one person who has not died 
+    # get another one 
+    # get a spell for each person 
+    # set one to dead
+    
+    # ag query to take max  and then have people how have a max of 0 losses fight
+    c.execute("INSERT INTO results SELECT w.name,0,0 FROM wizards AS w WHERE w.house = ?;",[house])
+    c.execute("""
+        WITH duelest (name) AS (
+            SELECT r.name 
+            FROM results AS r
+            WHERE MAX(r.losses) == 0
+            LIMIT 2
+        )
+        # CREATE VIEW randomCast AS
+        # cast a spell
+        SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id;
+        
+        # get all of the people with zero losses
+        SELECT r.name 
+            FROM results AS r
+            LIMIT 2;
+            
+        
+     SELECT *
+            FROM results AS r
+            JOIN (SELECT wizard_id, spell_id, MIN(RANDOM()) AS rnd FROM mastery GROUP BY wizard_id) as w ON w.wizard_id = r.id
+            JOIN spells ON spells.id = w.spell_id
+            WHERE r.losses == 0
+            LIMIT 2;
+            
+    # base case
+    
+     SELECT wizards.name, wizards.id, 0, 0
+            FROM wizards
+            WHERE 1= 1 LIMIT 1;
+        
+    # recursive 
+    with wizardBattle(name, id, win, loss, battleNumber) AS (
+        SELECT wizard.wizard_id, 0, 0 
+            FROM wizards 
+            WHERE wizards.house == ? LIMIT 1
+            
+    )
+        
+    """)
     # get the people from  all of the people from a house
+    # make table 
     # get a user have them fight someone in there house 
     # keep going until one wins 
     c.execute("""
-        WITH train(wizard) AS (
-            SELECT * FROM wizards WHERE wizards.house == ? LIMIT 1
+        WITH train(wizard, wins, losses) AS (
+            SELECT wizard.wizard_id, 0, 0 
+            FROM wizards 
+            WHERE wizards.house == ? LIMIT 1
+            
+            Union
+            
+            SELECT x 
+            FROM (
+                SELECT wizard.wizard_id, 0, 0 
+                FROM wizards 
+                WHERE wizards.house == ? 
+                    AND wizards.wizard_id NOT IN (
+                        SELECT train.wizard FROM train
+                    )
+                )
+            WHERE 
+            LIMIT 1
+            )
         ) 
 
     """)
     
-
 def getYears(year, c):
     c.execute("SELECT * FROM wizards WHERE year = (?)", [year])
     w_names = c.fetchall()
