@@ -15,7 +15,7 @@ def runTrain(house, c):
     # keep going until one wins 
     c.execute("""
         WITH train(wizard) AS (
-            
+            SELECT * FROM wizards WHERE wizards.house == ? LIMIT 1
         ) 
 
     """)
