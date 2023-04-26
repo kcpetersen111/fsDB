@@ -22,7 +22,9 @@ def runTrain(house, c):
     
 
 def getYears(year):
-    pass
+    conn = sqlite3.connect('wizard_duels.db')
+    c = conn.cursor()
+    c.execute("SELECT * FROM wizards WHERE year = (?)", [year])
 
 def getHouse(house):
     pass
@@ -33,7 +35,7 @@ def getWeakness(house):
 def getStalemate(house):
     pass
 
-def getSpells(wizzard):
+def getSpells(wizard):
     pass
 
 conn = sqlite3.connect('wizard_duels.db')
