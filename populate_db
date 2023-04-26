@@ -36,7 +36,7 @@ python3 insert.py houses Hufflepuff Slytherin Gryffindor
 python3 insert.py houses Ravenclaw Hufflepuff Slytherin
 
 # insert.pying data into 'spells'
-python3 insert.pySpellsFromCSV.py spells.csv
+python3 insertSpellsFromCSV.py spells.csv
 
 # insert.pying data into 'mastery'
-python3 insert.pyMasteryFromCSV.py mastery.csv
+python3 insertMasteryFromCSV.py mastery.csv
