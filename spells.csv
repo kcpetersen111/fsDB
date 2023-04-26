@@ -16,7 +16,7 @@ id,spell,description,power
 15,Sectumsempra,Causes deep and gory wounds on the target,90
 16,Stupefy,Stunning spell used to knock out the target,50
 17,Apparate,Teleportation spell that allows the caster to instantly transport themselves to a different location,0
-18,Bat-Bogey Hex,Causes the target's bogies to grow wings and attack them,30
+18,Bat-Bogey_Hex,Causes the target's bogies to grow wings and attack them,30
 19,Bombarda,Creates a small explosion,40
 20,Colloportus,Seals a door or other object making it impossible to open,30
 21,Confringo,Causes the target to burst into flames,80
