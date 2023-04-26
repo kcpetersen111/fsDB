@@ -157,6 +157,23 @@ def buildChain(c):
     ''').fetchall():
         print(f'{wizard[0]:20} : {wizard[1]:5}')
 
+def compareWizards(wiz1, wiz2, c):
+    c.execute('''
+        SELECT wizards.name, SUM(spells.power)/5 AS power
+        FROM wizards
+        JOIN mastery
+        ON wizards.id = wizard_id
+        JOIN spells 
+        ON spells.id = spell_id
+        WHERE wizards.name == (?) OR wizards.name == (?)
+        GROUP BY wizards.name
+        ORDER BY power DESC
+    ''', (wiz1, wiz2))
+    w_comp = c.fetchall()
+    print(f"{w_comp[0][0]}'s average power: {w_comp[0][1]}")
+    print(f"{w_comp[1][0]}'s average power: {w_comp[1][1]}")
+    print(f"{w_comp[0][0]} wins")
+
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
 if sys.argv[1] == "tournament":
@@ -179,6 +196,8 @@ elif sys.argv[1] == "masters":
     getMasters(sys.argv[2], c)
 elif sys.argv[1] == "foodchain":
     buildChain(c)
+elif sys.argv[1] == "compare":
+    compareWizards(sys.argv[2], sys.argv[3], c)
 else:
     print("I dont know what you mean")
 conn.commit()
