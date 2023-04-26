@@ -174,6 +174,11 @@ def compareWizards(wiz1, wiz2, c):
     print(f"{w_comp[1][0]}'s average power: {w_comp[1][1]}")
     print(f"{w_comp[0][0]} wins")
 
+def runSolos(wiz1, wiz2, c):
+    c.execute('''
+    
+    ''')
+
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
 if sys.argv[1] == "tournament":
@@ -198,6 +203,8 @@ elif sys.argv[1] == "foodchain":
     buildChain(c)
 elif sys.argv[1] == "compare":
     compareWizards(sys.argv[2], sys.argv[3], c)
+elif sys.argv[1] == "1v1":
+    runSolos(sys.argv[2], sys.argv[3], c)
 else:
     print("I dont know what you mean")
 conn.commit()
