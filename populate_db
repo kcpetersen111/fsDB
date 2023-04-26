@@ -1,42 +1,42 @@
 #!/bin/bash
 
-# inserting data into 'wizards'
-python3 insert wizards  1 Harry_Potter 3 Gryffindor
-python3 insert wizards  2 Draco_Malfoy 3 Slytherin
-python3 insert wizards  3 Severus_Snape 4 Slytherin
-python3 insert wizards  4 Rubeus_Hagrid 4 Gryffindor
-python3 insert wizards  5 Albus_Dumbledore 4 Gryffindor
-python3 insert wizards  6 Hermione_Granger 3 Gryffindor
-python3 insert wizards  7 Ron_Weasley 2 Gryffindor
-python3 insert wizards  8 Sirius_Black 3 Gryffindor
-python3 insert wizards  9 Bellatrix_Lestrange 2 Slytherin
-python3 insert wizards 10 Neville_Longbottom 1 Hufflepuff
-python3 insert wizards 11 Remus_Lupin 2 Gryffindor
-python3 insert wizards 12 Dobby 4 Slytherin
-python3 insert wizards 13 Lord_Voldemort 4 Slytherin
-python3 insert wizards 14 Alastor_Moody 4 Hufflepuff
-python3 insert wizards 15 Minerva_Mcgonagall 2 Gryffindor
-python3 insert wizards 16 Dolores_Umbridge 1 Slytherin
-python3 insert wizards 17 Luna_Lovegood 2 Ravenclaw
-python3 insert wizards 18 Cedric_Diggory 2 Hufflepuff
-python3 insert wizards 19 Newt_Scamander 3 Hufflepuff
-python3 insert wizards 20 Gilderoy_Lockhart 3 Ravenclaw
-python3 insert wizards 21 Cho_Chang 2 Ravenclaw
-python3 insert wizards 22 Pomona_Sprout 1 Hufflepuff
-python3 insert wizards 23 Hannah_Abbott 2 Hufflepuff
-python3 insert wizards 24 Myrtle_Warren 3 Ravenclaw
-python3 insert wizards 25 Marcus_Belby 1 Ravenclaw
-python3 insert wizards 26 Garrick_Ollivander 4 Ravenclaw
-python3 insert wizards 27 Quirinus_Quirrell 3 Ravenclaw
+# insert.pying data into 'wizards'
+python3 insert.py wizards  1 Harry_Potter 3 Gryffindor
+python3 insert.py wizards  2 Draco_Malfoy 3 Slytherin
+python3 insert.py wizards  3 Severus_Snape 4 Slytherin
+python3 insert.py wizards  4 Rubeus_Hagrid 4 Gryffindor
+python3 insert.py wizards  5 Albus_Dumbledore 4 Gryffindor
+python3 insert.py wizards  6 Hermione_Granger 3 Gryffindor
+python3 insert.py wizards  7 Ron_Weasley 2 Gryffindor
+python3 insert.py wizards  8 Sirius_Black 3 Gryffindor
+python3 insert.py wizards  9 Bellatrix_Lestrange 2 Slytherin
+python3 insert.py wizards 10 Neville_Longbottom 1 Hufflepuff
+python3 insert.py wizards 11 Remus_Lupin 2 Gryffindor
+python3 insert.py wizards 12 Dobby 4 Slytherin
+python3 insert.py wizards 13 Lord_Voldemort 4 Slytherin
+python3 insert.py wizards 14 Alastor_Moody 4 Hufflepuff
+python3 insert.py wizards 15 Minerva_Mcgonagall 2 Gryffindor
+python3 insert.py wizards 16 Dolores_Umbridge 1 Slytherin
+python3 insert.py wizards 17 Luna_Lovegood 2 Ravenclaw
+python3 insert.py wizards 18 Cedric_Diggory 2 Hufflepuff
+python3 insert.py wizards 19 Newt_Scamander 3 Hufflepuff
+python3 insert.py wizards 20 Gilderoy_Lockhart 3 Ravenclaw
+python3 insert.py wizards 21 Cho_Chang 2 Ravenclaw
+python3 insert.py wizards 22 Pomona_Sprout 1 Hufflepuff
+python3 insert.py wizards 23 Hannah_Abbott 2 Hufflepuff
+python3 insert.py wizards 24 Myrtle_Warren 3 Ravenclaw
+python3 insert.py wizards 25 Marcus_Belby 1 Ravenclaw
+python3 insert.py wizards 26 Garrick_Ollivander 4 Ravenclaw
+python3 insert.py wizards 27 Quirinus_Quirrell 3 Ravenclaw
 
-# inserting data into 'houses'
-python3 insert houses Gryffindor Ravenclaw Hufflepuff
-python3 insert houses Slytherin Gryffindor Ravenclaw
-python3 insert houses Hufflepuff Slytherin Gryffindor
-python3 insert houses Ravenclaw Hufflepuff Slytherin
+# insert.pying data into 'houses'
+python3 insert.py houses Gryffindor Ravenclaw Hufflepuff
+python3 insert.py houses Slytherin Gryffindor Ravenclaw
+python3 insert.py houses Hufflepuff Slytherin Gryffindor
+python3 insert.py houses Ravenclaw Hufflepuff Slytherin
 
-# inserting data into 'spells'
-python3 insertSpellsFromCSV.py spells.csv
+# insert.pying data into 'spells'
+python3 insert.pySpellsFromCSV.py spells.csv
 
-# inserting data into 'mastery'
-python3 insertMasteryFromCSV.py mastery.csv
+# insert.pying data into 'mastery'
+python3 insert.pyMasteryFromCSV.py mastery.csv
