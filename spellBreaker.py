@@ -8,6 +8,19 @@ def runTournament():
 def runDuels(house):
     pass
 
+def runTrain(house, c):
+    
+    # get the people from  all of the people from a house
+    # get a user have them fight someone in there house 
+    # keep going until one wins 
+    c.execute("""
+        WITH train(wizard) AS (
+            
+        ) 
+
+    """)
+    
+
 def getYears(year):
     pass
 
@@ -23,6 +36,8 @@ def getStalemate(house):
 def getSpells(wizzard):
     pass
 
+conn = sqlite3.connect('wizard_duels.db')
+c = conn.cursor()
 if sys.argv[1] == "tournament":
     print(runTournament())
 elif sys.argv[1] == "duels":
@@ -35,5 +50,8 @@ elif sys.argv[1] == "stalemate":
     print(getStalemate(sys.argv[2]))
 elif sys.argv[1] == "spells":
     print(getSpells(sys.argv[2]))
+elif sys.argv[1] == "train":
+    print(runTrain(sys.argv[2], c))
 else:
     print("I dont know what you mean")
+conn.commit()
