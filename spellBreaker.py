@@ -21,6 +21,22 @@ def runTournament(c):
 def runDuels(house, c):
     pass
 
+def buildReview(c):
+    for wizard in c.execute('''
+        SELECT 
+            wizards.name, wins, losses, SUM(spells.power) AS power, wins-losses AS rank
+        FROM 
+            wizards JOIN mastery ON 
+                wizards.id = wizard_id
+            JOIN spells ON
+                spells.id = spell_id
+            JOIN results ON
+                results.id = wizards.id
+        GROUP BY wizards.name
+        ORDER BY rank DESC
+        ''').fetchall():
+        print(f'{wizard[0]:20} : {wizard[1]:5} : {wizard[2]:5} : {wizard[3]:5}')
+
 def runTrain(house, c):
     
     c.execute("DELETE FROM results;")
