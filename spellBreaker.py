@@ -59,7 +59,18 @@ def getSpells(wizard, c):
 
 
 def getMasters(spell ,c):
-    pass
+    for spell in c.execute('''
+        SELECT 
+            wizards.name
+        FROM 
+            wizards JOIN mastery ON 
+                wizards.id = wizard_id
+            JOIN spells ON
+                spells.id = spell_id
+        WHERE
+            spells.spell = ?
+    ''', [spell]).fetchall():
+        print(spell[0])
 
 conn = sqlite3.connect('wizard_duels.db')
 c = conn.cursor()
@@ -80,7 +91,7 @@ elif sys.argv[1] == "spells":
 elif sys.argv[1] == "train":
     print(runTrain(sys.argv[2], c))
 elif sys.argv[1] == "masters":
-    print(getMasters(sys.argv[2], c))
+    getMasters(sys.argv[2], c)
 else:
     print("I dont know what you mean")
 conn.commit()
