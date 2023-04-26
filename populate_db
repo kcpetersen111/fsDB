@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# insert.pying data into 'wizards'
+# inserting data into 'wizards'
 python3 insert.py wizards  1 Harry_Potter 3 Gryffindor
 python3 insert.py wizards  2 Draco_Malfoy 3 Slytherin
 python3 insert.py wizards  3 Severus_Snape 4 Slytherin
@@ -29,14 +29,14 @@ python3 insert.py wizards 25 Marcus_Belby 1 Ravenclaw
 python3 insert.py wizards 26 Garrick_Ollivander 4 Ravenclaw
 python3 insert.py wizards 27 Quirinus_Quirrell 3 Ravenclaw
 
-# insert.pying data into 'houses'
+# inserting data into 'houses'
 python3 insert.py houses Gryffindor Ravenclaw Hufflepuff
 python3 insert.py houses Slytherin Gryffindor Ravenclaw
 python3 insert.py houses Hufflepuff Slytherin Gryffindor
 python3 insert.py houses Ravenclaw Hufflepuff Slytherin
 
-# insert.pying data into 'spells'
+# inserting data into 'spells'
 python3 insertSpellsFromCSV.py spells.csv
 
-# insert.pying data into 'mastery'
+# inserting data into 'mastery'
 python3 insertMasteryFromCSV.py mastery.csv
