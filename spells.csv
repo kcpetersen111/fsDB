@@ -15,14 +15,14 @@ id,spell,description,power
 14,Reducto,Breaks objects into pieces,60
 15,Sectumsempra,Causes deep and gory wounds on the target,90
 16,Stupefy,Stunning spell used to knock out the target,50
-17,Apparate,Teleportation spell that allows the caster to instantly transport themselves to a different location,70
+17,Apparate,Teleportation spell that allows the caster to instantly transport themselves to a different location,0
 18,Bat-Bogey Hex,Causes the target's bogies to grow wings and attack them,30
 19,Bombarda,Creates a small explosion,40
 20,Colloportus,Seals a door or other object making it impossible to open,30
 21,Confringo,Causes the target to burst into flames,80
 22,Diffindo,Cuts or slashes objects such as clothing or curtains,40
 23,Episkey,Minor healing spell used to heal minor injuries,30
-24,Evanesco,Vanishing spell used to make an object disappear,40
+24,Evanesco,Vanishing spell used to make an object disappear,30
 25,Ferula,Conjures up a bandage and splint for a broken limb,30
 26,Finite Incantatem,Ends the effects of spells and charms,50
 27,Fidelius,Hides a secret within the soul of a chosen person making it impossible for others to discover it,100
